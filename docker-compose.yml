@@ -1,0 +1,14 @@
+services:
+  chance-fastapi:
+    build: .
+    container_name: chance-fastapi
+    ports:
+      - "8000:8000"
+    environment:
+      FETCH_INTERVAL_SECONDS: "30"
+      DATABASE_URL: "sqlite:////app/data/chance.db"
+      LOG_DIR: "/app/logs"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    restart: unless-stopped
