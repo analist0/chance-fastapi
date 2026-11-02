@@ -1,0 +1,9 @@
+{
+  "name": "chance-book",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-vercel.mjs",
+    "test": "node --test tests/*.cjs tests/*.mjs",
+    "dev": "node scripts/embed.mjs && node scripts/dev.mjs"
+  }
+}
