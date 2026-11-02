@@ -1,0 +1,7 @@
+public/
+dist/
+.vercel/
+node_modules/
+.env*
+web/*.zip
+worker/index.js

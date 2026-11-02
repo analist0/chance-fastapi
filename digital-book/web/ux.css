@@ -1,0 +1,46 @@
+/* UX recovery: restore vertical scroll while retaining horizontal page gestures. */
+html{scroll-behavior:smooth;overscroll-behavior-y:auto}
+body.book-first{overflow-x:hidden;overflow-y:auto;min-height:100dvh;height:auto}
+.book-first header{position:sticky;top:0;z-index:40}
+.book-first main{height:auto;min-height:calc(100dvh - 58px);padding-bottom:32px}
+.book-first .reader{height:auto;min-height:calc(100dvh - 110px)}
+.book-first .book-stage{height:clamp(540px,calc(100dvh - 175px),1000px);flex:none;touch-action:pan-y pinch-zoom}
+.book-first .paper{overflow:hidden;overscroll-behavior:auto}
+.book-first .reader-top{height:auto;min-height:18px}
+.book-first #latestDraw{display:flex!important;margin:8px 0 12px}
+.book-first #latestDraw[hidden]{display:none!important}
+.book-first #chancePro{margin:12px 0 24px}
+.book-first #bookView[hidden],.book-first #analysisView[hidden],.book-first #guideView[hidden]{display:none!important}
+.book-first .workspace{display:block}
+.book-first .book-stage:focus-visible{outline:3px solid #d4a44d}
+.latest-draw{transition:padding .18s ease}
+.latest-draw .latest-toolbar{display:flex;gap:6px;align-items:center}
+.latest-draw .latest-toggle{background:#e5c887;color:#173f36;border:1px solid #e5c887;border-radius:8px;padding:7px 11px;cursor:pointer}
+.latest-draw.latest-compact{padding:8px 14px;gap:8px}
+.latest-draw.latest-compact .latest-cards>span{font-size:17px;padding:5px 7px;min-width:35px}
+.latest-draw.latest-compact .latest-cards small{font-size:12px}
+.latest-draw.latest-compact .latest-info,.latest-draw.latest-compact #latestJump{display:none}
+.latest-draw.latest-collapsed{display:none!important}
+#latestRestore{display:none;background:#204b3b;color:#f3d38b;border:1px solid #c5a059;border-radius:8px;padding:6px 10px;margin:8px 0}
+#latestRestore.is-visible{display:inline-block}
+@media(max-width:720px){.book-first main{min-height:calc(100dvh - 77px)}.book-first .reader{height:auto;min-height:calc(100dvh - 110px)}.book-first .book-stage{height:max(560px,calc(100dvh - 165px));max-height:none}.book-first .paper{overflow:hidden}.latest-draw.latest-compact .latest-cards{width:auto;flex:1;min-width:0}.latest-draw.latest-compact .latest-label{font-size:11px}.latest-draw.latest-compact .latest-cards>span{font-size:15px}}
+@media print{body.book-first{overflow:visible}.book-first header{position:static}}
+
+/* Scrolling belongs to the document, not the book page. */
+html,body.book-first{height:auto!important;overflow-y:auto!important;overscroll-behavior-y:auto}
+.book-first #stage,.book-first #paper,.book-first #pageContent{touch-action:pan-y pinch-zoom}
+.book-first #stage{overflow:hidden}
+.book-first #paper{overflow:hidden!important}
+.book-first #stage button,.book-first #stage input{touch-action:manipulation}
+
+/* Complete book page: all rows belong to one naturally scrolling document. */
+.book-first .reader{height:auto!important;min-height:0!important;display:block!important}
+.book-first .book-stage{height:auto!important;min-height:0!important;max-height:none!important;display:block!important;overflow:hidden!important}
+.book-first #paper{height:auto!important;min-height:0!important;overflow:visible!important;display:block!important;position:relative}
+.book-first #pageContent{height:auto!important;min-height:0!important;display:block!important}
+.book-first #pageContent .draw-table{height:auto!important;flex:none!important;table-layout:fixed}
+.book-first #pageContent .draw-table td{height:58px!important;min-height:58px!important}
+.book-first #pageContent .draw-table .card{font-size:clamp(25px,7vw,47px)!important}
+.book-first #under{height:100%!important;min-height:0!important;overflow:hidden!important}
+.book-first .pagination{position:relative;z-index:2;margin-top:12px!important;margin-bottom:14px!important}
+@media(max-width:720px){.book-first #pageContent .draw-table td{height:58px!important}.book-first #pageContent .draw-table .card{font-size:clamp(27px,8vw,42px)!important}.book-first #paper{padding-bottom:16px!important}}
