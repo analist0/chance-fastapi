@@ -5,7 +5,7 @@ body.book-first{overflow-x:hidden;overflow-y:auto;min-height:100dvh;height:auto}
 .book-first main{height:auto;min-height:calc(100dvh - 58px);padding-bottom:32px}
 .book-first .reader{height:auto;min-height:calc(100dvh - 110px)}
 .book-first .book-stage{height:clamp(540px,calc(100dvh - 175px),1000px);flex:none;touch-action:pan-y pinch-zoom}
-.book-first .paper{overflow:auto;overscroll-behavior:contain}
+.book-first .paper{overflow:hidden;overscroll-behavior:auto}
 .book-first .reader-top{height:auto;min-height:18px}
 .book-first #latestDraw{display:flex!important;margin:8px 0 12px}
 .book-first #latestDraw[hidden]{display:none!important}
@@ -23,5 +23,12 @@ body.book-first{overflow-x:hidden;overflow-y:auto;min-height:100dvh;height:auto}
 .latest-draw.latest-collapsed{display:none!important}
 #latestRestore{display:none;background:#204b3b;color:#f3d38b;border:1px solid #c5a059;border-radius:8px;padding:6px 10px;margin:8px 0}
 #latestRestore.is-visible{display:inline-block}
-@media(max-width:720px){.book-first main{min-height:calc(100dvh - 77px)}.book-first .reader{height:auto;min-height:calc(100dvh - 110px)}.book-first .book-stage{height:max(560px,calc(100dvh - 165px));max-height:none}.book-first .paper{overflow:auto}.latest-draw.latest-compact .latest-cards{width:auto;flex:1;min-width:0}.latest-draw.latest-compact .latest-label{font-size:11px}.latest-draw.latest-compact .latest-cards>span{font-size:15px}}
+@media(max-width:720px){.book-first main{min-height:calc(100dvh - 77px)}.book-first .reader{height:auto;min-height:calc(100dvh - 110px)}.book-first .book-stage{height:max(560px,calc(100dvh - 165px));max-height:none}.book-first .paper{overflow:hidden}.latest-draw.latest-compact .latest-cards{width:auto;flex:1;min-width:0}.latest-draw.latest-compact .latest-label{font-size:11px}.latest-draw.latest-compact .latest-cards>span{font-size:15px}}
 @media print{body.book-first{overflow:visible}.book-first header{position:static}}
+
+/* Scrolling belongs to the document, not the book page. */
+html,body.book-first{height:auto!important;overflow-y:auto!important;overscroll-behavior-y:auto}
+.book-first #stage,.book-first #paper,.book-first #pageContent{touch-action:pan-y pinch-zoom}
+.book-first #stage{overflow:hidden}
+.book-first #paper{overflow:hidden!important}
+.book-first #stage button,.book-first #stage input{touch-action:manipulation}
